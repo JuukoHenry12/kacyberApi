@@ -1,21 +1,33 @@
-// const User = require("../Models/User");
-const config = require('../config/config')
-
-const RegisterController = async (req, res) => {
-  const {name,email,phone,NinNumber } = req.body;
+const User = require=('../Models/User')
+const WailtListController = async (req, res) => {
+  const {firstname,surname, phoneNumber,email, selectedOption, NinNumber} = req.body;
   try {
-    // if (!user) {
-    // return res.status(400).send({ error:true, message: 'Please provide user' });
-    // }
-    config.query("INSERT INTO users SET ? ", {email:email,name:name, phone:phone,NinNumber:NinNumber,}, function (error, results, fields) {
-    if (error) throw error;
-    return res.send({ error: false, data: results, message: 'New user has been created successfully.' });
-    });
+      // Check if user already exists
+      const existingUser = await User.findOne({ email });
 
-     res.status(201).json({ message: "Thank for Joining we be touch " });
+      if (existingUser) {
+        return res.status(409).json({ message: 'User already exists' });
+      }
+
+      // Create a new user
+      const newUser = new User({
+        firstname,
+        surname,
+        email,
+        phoneNumber,
+        selectedOption,
+        NinNumber,
+      });
+   
+      // Save the user to the database
+      await newUser.save();
+    res.status(201).json({ message: "Thank for Joining we be touch " });
   } catch (error) {
     console.error(error.message());
   }
 };
 
-module.exports = RegisterController;
+
+module.exports = {
+  WailtListController,
+};
