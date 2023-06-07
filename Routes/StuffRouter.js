@@ -5,19 +5,19 @@ const {LoginController,RegisterStuffContoller,DeleteStuffContoller,updateStuffCo
 // Create a router instance
 const Stuffrouter = express.Router();
 
+//register Stuff
+Stuffrouter.post("/register-stuff", RegisterStuffContoller);
+
 // Define routes
 Stuffrouter.post("/login", LoginController);
 
 //GET Stuff
 Stuffrouter.get("/get-Stuff", GetStuffController);
 
-//register Stuff
-Stuffrouter.post("/register-stuff", RegisterStuffContoller);
-
 //delete Stuff
-Stuffrouter.delete("/register-stuff", DeleteStuffContoller);
+Stuffrouter.delete("/delete-stuff", DeleteStuffContoller);
 
 //Update  Stuff
-Stuffrouter.put("/register-stuff", updateStuffController);
+Stuffrouter.put("/update-stuff", updateStuffController);
 // Export the router
 module.exports = Stuffrouter;

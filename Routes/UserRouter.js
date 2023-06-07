@@ -9,7 +9,7 @@ const WailtListController = require('../Controller/UserController');
 
 
 // Define routes
-Userouter.post('/register',WailtListController);
+Userouter.post('/waitlist',WailtListController);
 
 // Export the router
 module.exports = Userouter;
