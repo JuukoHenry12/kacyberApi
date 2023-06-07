@@ -21,13 +21,11 @@ const WailtListController = async (req, res) => {
    
       // Save the user to the database
       await newUser.save();
-    res.status(201).json({ message: "Thank for Joining we be touch " });
+     return  res.status(201).json({ message: "Thank for Joining we be touch " });
   } catch (error) {
     console.error(error.message());
   }
 };
 
 
-module.exports = {
-  WailtListController,
-};
+module.exports = WailtListController 
