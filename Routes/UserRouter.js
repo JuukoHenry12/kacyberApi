@@ -4,12 +4,15 @@ const express = require('express');
 const Userouter = express.Router();
 
 
-const WailtListController = require('../Controller/UserController');
+const {WailtListController,GetUserController,DeleteUserContoller}= require('../Controller/UserController');
 
 
 
 // Define routes
 Userouter.post('/waitlist',WailtListController);
+// get Users
+Userouter.get("/get-users",GetUserController)
+Userouter.delete("/delete-user/:id",DeleteUserContoller)
 
 // Export the router
 module.exports = Userouter;

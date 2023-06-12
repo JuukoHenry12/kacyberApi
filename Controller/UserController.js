@@ -30,5 +30,38 @@ const WailtListController = async (req, res) => {
   }
 };
 
+const GetUserController=async(req,res)=>{
+   try {
+       const user =await User.find().sort({createdAt:-1})
 
-module.exports = WailtListController 
+       return res.status(200).json({
+          success:true,
+          user:user
+       })
+
+   }catch(error){
+      
+   }
+}
+
+const DeleteUserContoller = async (req, res) => {
+
+  try {
+        const deletedUser= await User.findByIdAndDelete(req.params.id)
+
+        if (!deletedUser) {
+          return res.status(404).json({ message: "User not found" });
+        }
+
+        return  res.status(200).json({ 
+          message: "User  deleted successfully",
+          success:true
+        });
+  } catch (error) {
+       console.log(error)
+  }
+};
+
+
+
+module.exports = {WailtListController,GetUserController,DeleteUserContoller}

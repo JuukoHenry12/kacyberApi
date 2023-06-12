@@ -1,3 +1,4 @@
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
@@ -27,6 +28,8 @@ const userSchema = new Schema( {
         type:String,
         require:true
     },
+},{
+    timestamps: true ,
 }),
 User = mongoose.model('User', userSchema);
 
