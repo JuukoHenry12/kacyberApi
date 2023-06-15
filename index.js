@@ -8,6 +8,7 @@ dotenv.config();
 const Port = process.env.PORT || 4000;
 const UserRouter = require("./Routes/UserRouter");
 const StuffRouter = require("./Routes/StuffRouter");
+const MemberRoute = require("./Routes/memberRoute")
 
 
 
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use(cors());
 app.use("/api/user", UserRouter);
 app.use("/api/stuff", StuffRouter);
+app.use("/api/member",MemberRoute)
 
 mongoose
   .connect(process.env.MONGO_URL , {

@@ -93,11 +93,11 @@ const updateStuffController = async (req, res) => {
       { new: true }
     );
 
-    if (!updatedUser) {
+    if (updatedStuff) {
       return res.status(404).json({ message: "Stuff not found" });
     }
 
-     return res.status(200).json({ message: "Stuffupdated successfully", user: updatedUser });
+     return res.status(200).json({ message: "Stuffupdated successfully", user: updatedStuff});
   } catch (error) {
      return   res.status(500).json({ message: "Internal server error" });
   }

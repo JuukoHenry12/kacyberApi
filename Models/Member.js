@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-const userSchema = new Schema( {
+const MemberSchema = new Schema( {
 	firstname:{
         type:String,
         require:true
@@ -20,11 +20,7 @@ const userSchema = new Schema( {
         type:String,
         require:true
    },
-    selectedOption:{
-    type:String,
-    require:true
-    },
-    NinNumber:{
+   NinNumber:{
         type:String,
         require:true
     },
@@ -33,6 +29,6 @@ const userSchema = new Schema( {
         default: Date.now
     }
 }),
-User = mongoose.model('User', userSchema);
+Member = mongoose.model('Member', MemberSchema );
 
-module.exports = User;
+module.exports = Member;

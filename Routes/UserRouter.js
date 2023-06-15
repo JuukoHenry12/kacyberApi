@@ -5,8 +5,7 @@ const Userouter = express.Router();
 
 
 const {WailtListController,GetUserController,DeleteUserContoller}= require('../Controller/UserController');
-
-
+const authenticateUser = require("../Middleware/Index")
 
 // Define routes
 Userouter.post('/waitlist',WailtListController);
