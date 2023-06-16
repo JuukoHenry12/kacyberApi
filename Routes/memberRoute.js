@@ -8,10 +8,10 @@ const authenticateUser = require('../Middleware/Index')
 const {AddMember,GetMemberController,DeleteUserContoller} = require("../Controller/Member")
 
 // Define routes
-memberouter.post('/addMember', AddMember);
+memberouter.post('/addMember', authenticateUser, AddMember);
 // get Users
-memberouter.get("/get-member",GetMemberController)
-memberouter.delete("/delete-member/:id",DeleteUserContoller)
+memberouter.get("/get-member", authenticateUser,GetMemberController)
+memberouter.delete("/delete-member/:id", authenticateUser,DeleteUserContoller)
 // memberouter.put("/update-member/:id",DeleteUserContoller)
 
 // Export the router

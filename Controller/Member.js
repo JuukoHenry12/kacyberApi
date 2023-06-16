@@ -5,7 +5,7 @@ const AddMember= async (req, res) => {
       // Check if user already exists
       const member= await Member.findOne({email});
 
-      if (existingUser) {
+      if ( member) {
         return res.status(409).json({ message: 'Member already exists' });
       }
 
@@ -18,9 +18,9 @@ const AddMember= async (req, res) => {
         NinNumber,
       });
    
-      // Save the user to the database
-     await newMember.save();
-     return  res.status(200).json({ 
+       // Save the user to the database
+       await newMember.save();
+      return  res.status(200).json({ 
       message: "Card member has been added",
        member:newMember
     
@@ -34,7 +34,7 @@ const GetMemberController=async(req,res)=>{
    try {
        const member =await Member.find().sort({createdAt:-1})
 
-       return res.status(200).json({
+        return res.status(200).json({
           success:true,
           member:member
        })

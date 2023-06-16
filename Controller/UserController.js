@@ -48,7 +48,7 @@ const DeleteUserContoller = async (req, res) => {
     //  const {id} =parseInt(req.params.id)
   try {
     // Check if the user exists
-    const user = await User.findById (req.user._id);
+    const user = await User.findById (req.params.id,req.body);
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
@@ -63,6 +63,22 @@ const DeleteUserContoller = async (req, res) => {
   }
 };
 
+const EditUserController = async(req,res)=>{
+  try{
+    await User.findByIdAndDelete(req.params.id,req.body)
+    res.send({
+       success:true,
+       message:"User editeed successfully"
+    })
+  }catch(error){
+    res.send({
+      success:false,
+      message:error.message
+  })
+  }
+}
 
 
-module.exports = {WailtListController,GetUserController,DeleteUserContoller}
+module.exports = {WailtListController,GetUserController,DeleteUserContoller,
+  EditUserController 
+}

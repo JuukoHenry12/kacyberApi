@@ -13,12 +13,12 @@ Stuffrouter.post("/register-stuff", RegisterStuffContoller);
 Stuffrouter.post("/login", LoginController);
 
 //GET Stuff
-Stuffrouter.get("/get-Stuff",GetStuffController);
+Stuffrouter.get("/get-Stuff", authenticateUser,GetStuffController);
 
 //delete Stuff
-Stuffrouter.delete("/delete-stuff",DeleteStuffContoller);
+Stuffrouter.delete("/delete-stuff", authenticateUser,DeleteStuffContoller);
 
 //Update  Stuff
-Stuffrouter.put("/update-stuff", updateStuffController);
+Stuffrouter.put("/update-stuff", authenticateUser, updateStuffController);
 // Export the router
 module.exports = Stuffrouter;
