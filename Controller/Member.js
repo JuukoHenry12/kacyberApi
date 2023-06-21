@@ -1,4 +1,5 @@
 const Member = require('../Models/Member')
+
 const AddMember= async (req, res) => {
   const {firstname,surname, phoneNumber,email,NinNumber} = req.body;
   try {
@@ -10,7 +11,7 @@ const AddMember= async (req, res) => {
       }
 
       // Create a new user
-      const newMember = new  User({
+      const newMember = new  Member({
         firstname,
         surname,
         email,
@@ -44,19 +45,29 @@ const GetMemberController=async(req,res)=>{
    }
 }
 
-const DeleteUserContoller = async (req, res) => {
-    //  const {id} =parseInt(req.params.id)
+const   CountMemberController=async(req,res)=>{
   try {
-    // Check if the user exists
-    const user = await Member.findById (req.user._id);
-    if (!user) {
-      return res.status(404).json({ message: 'member not found' });
-    }
+      const member =await Member.find().count()
 
-    // Delete the user
-    await user.remove();
+       return res.status(200).json({
+         success:true,
+         member:member
+      })
 
-    res.json({ message: 'member deleted successfully' });
+  }catch(error){
+     
+  }
+}
+
+const DeleteMemberContoller = async (req, res) => {
+
+  try {
+    
+    await Member.findByIdAndDelete(req.params.id,req.body )
+    res.send({
+       success:true,
+       message:"member deleted successfully"
+    })
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'Server error' });
@@ -67,5 +78,6 @@ const DeleteUserContoller = async (req, res) => {
 module.exports = {
     AddMember,
     GetMemberController,
-    DeleteUserContoller,
+    DeleteMemberContoller,
+    CountMemberController,
 }

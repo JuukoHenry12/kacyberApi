@@ -1,6 +1,8 @@
 // Import required modules
 const express = require("express");
-const {LoginController,RegisterStuffContoller,DeleteStuffContoller,updateStuffController,GetStuffController} = require("../Controller/StuffController");
+const {LoginController,RegisterStuffContoller,DeleteStuffContoller,updateStuffController,GetStuffController,
+    CountStuffController
+} = require("../Controller/StuffController");
 const authenticateUser=require("../Middleware/Index")
 
 // Create a router instance
@@ -17,6 +19,9 @@ Stuffrouter.get("/get-Stuff", authenticateUser,GetStuffController);
 
 //delete Stuff
 Stuffrouter.delete("/delete-stuff", authenticateUser,DeleteStuffContoller);
+
+//get count
+Stuffrouter.get("/get-stuffcount", CountStuffController)
 
 //Update  Stuff
 Stuffrouter.put("/update-stuff", authenticateUser, updateStuffController);

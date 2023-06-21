@@ -29,6 +29,6 @@ const MemberSchema = new Schema( {
         default: Date.now
     }
 }),
-Member = mongoose.model('Member', MemberSchema );
+Member = mongoose.model('Member', MemberSchema);
 
 module.exports = Member;

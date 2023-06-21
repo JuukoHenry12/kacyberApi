@@ -114,10 +114,26 @@ const GetStuffController=async (req,res)=>{
       return res.status(500).json({ message: "Internal server error" });
    }
 }
+
+const   CountStuffController=async(req,res)=>{
+  try {
+      const stuff =await  Stuff.find().count()
+
+       return res.status(200).json({
+         success:true,
+         stuff:stuff
+      })
+
+  }catch(error){
+     
+  }
+}
+
 module.exports = {
   LoginController,
   RegisterStuffContoller,
   DeleteStuffContoller,
   updateStuffController,
-  GetStuffController
+  GetStuffController,
+  CountStuffController
 };

@@ -43,6 +43,19 @@ const GetUserController=async(req,res)=>{
       
    }
 }
+const   CountUserController=async(req,res)=>{
+  try {
+      const user =await User.find().count()
+
+       return res.status(200).json({
+         success:true,
+         users:user
+      })
+
+  }catch(error){
+     
+  }
+}
 
 const DeleteUserContoller = async (req, res) => {
     //  const {id} =parseInt(req.params.id)
@@ -80,5 +93,5 @@ const EditUserController = async(req,res)=>{
 
 
 module.exports = {WailtListController,GetUserController,DeleteUserContoller,
-  EditUserController 
+  EditUserController,CountUserController 
 }
