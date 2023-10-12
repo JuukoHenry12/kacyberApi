@@ -60,16 +60,11 @@ const   CountUserController=async(req,res)=>{
 const DeleteUserContoller = async (req, res) => {
     //  const {id} =parseInt(req.params.id)
   try {
-    // Check if the user exists
-    const user = await User.findById (req.params.id,req.body);
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-
-    // Delete the user
-    await user.remove();
-
-    res.json({ message: 'User deleted successfully' });
+    await User.findByIdAndDelete(req.params.id,req.body )
+     res.send({
+        success:true,
+        message:"member deleted successfully"
+      })
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'Server error' });

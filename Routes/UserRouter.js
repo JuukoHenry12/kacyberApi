@@ -3,8 +3,6 @@ const express = require('express');
 const Userouter = express.Router();
 const authenticateUser = require('../Middleware/Index')
 const {WailtListController,GetUserController,DeleteUserContoller,EditUserController,CountUserController }= require('../Controller/UserController');
-
-
 // Define routes
 Userouter.post('/waitlist',WailtListController);
 // get Users

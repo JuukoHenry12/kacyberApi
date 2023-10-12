@@ -66,17 +66,18 @@ const LoginController = async (req, res) => {
 };
 
 const DeleteStuffContoller = async (req, res) => {
-  const { stuffId } = req.params;
+
   try {
-    const deletedStuff = await Stuff.findByIdAndDelete(stuffId);
+    
+    await Stuff.findByIdAndDelete(req.params.id,req.body )
 
-    if (!deletedStuff) {
-      return res.status(404).json({ message: "User not found" });
-    }
+    res.send({
+        success:true,
+        message:"member deleted successfully"
+      })
 
-     return  res.status(200).json({ message: "Stuff deleted successfully" });
   } catch (error) {
-    return res.status(500).json("Internal server Error");
+      res.status(500).json({ error: 'Server error' });
   }
 };
 

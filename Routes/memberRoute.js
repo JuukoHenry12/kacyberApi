@@ -11,7 +11,7 @@ memberouter.post('/addMember', AddMember);
 // get Users
 memberouter.get("/get-member",GetMemberController)
 memberouter.get("/get-membercount",CountMemberController)
-memberouter.delete('/delete-member/:_id', DeleteMemberContoller)
+memberouter.delete('/delete-member/:id', DeleteMemberContoller)
 // memberouter.put("/update-member/:id",DeleteUserContoller)
 
 // Export the router

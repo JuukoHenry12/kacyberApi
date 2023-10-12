@@ -64,13 +64,14 @@ const DeleteMemberContoller = async (req, res) => {
   try {
     
     await Member.findByIdAndDelete(req.params.id,req.body )
+
     res.send({
-       success:true,
-       message:"member deleted successfully"
-    })
+        success:true,
+        message:"member deleted successfully"
+      })
+
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: 'Server error' });
+      res.status(500).json({ error: 'Server error' });
   }
 };
 

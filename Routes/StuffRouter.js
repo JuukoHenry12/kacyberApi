@@ -4,26 +4,19 @@ const {LoginController,RegisterStuffContoller,DeleteStuffContoller,updateStuffCo
     CountStuffController
 } = require("../Controller/StuffController");
 const authenticateUser=require("../Middleware/Index")
-
 // Create a router instance
 const Stuffrouter = express.Router();
-
 //register Stuff
 Stuffrouter.post("/register-stuff", RegisterStuffContoller);
-
 // Define routes
 Stuffrouter.post("/login", LoginController);
-
 //GET Stuff
-Stuffrouter.get("/get-Stuff", authenticateUser,GetStuffController);
-
+Stuffrouter.get("/get-Stuff",GetStuffController);
 //delete Stuff
-Stuffrouter.delete("/delete-stuff", authenticateUser,DeleteStuffContoller);
-
+Stuffrouter.delete("/delete-stuff",DeleteStuffContoller);
 //get count
 Stuffrouter.get("/get-stuffcount", CountStuffController)
-
 //Update  Stuff
-Stuffrouter.put("/update-stuff", authenticateUser, updateStuffController);
+Stuffrouter.put("/update-stuff", updateStuffController);
 // Export the router
 module.exports = Stuffrouter;
