@@ -2,7 +2,7 @@ const CardPayment = require("../Models/CardPayment");
 const CardPaymentStatus = require("../Models/CardPaymentStatus");
 const { v4: uuidv4 } = require("uuid");
 const CreateCardPayment = async (req, res) => {
-  const { amount, phone, email, name, network } = req.body;
+  const { amount, phone, email, name} = req.body;
 
   try {
     const body = {
@@ -14,7 +14,7 @@ const CreateCardPayment = async (req, res) => {
         partyId: phone,
       },
       payerMessage: name,
-      payeeNote: network,
+      payeeNote: "MTN",
     };
 
     const uuid = uuidv4();
@@ -43,7 +43,6 @@ const CreateCardPayment = async (req, res) => {
         name,
         phone,
         email,
-        network,
         amount,
         id: uuid,
         status: paymentstatus,
@@ -58,7 +57,7 @@ const CreateCardPayment = async (req, res) => {
 
       return res.status(200).json({
         message:
-          "Thank you! Your Card Payment will be received when authorized.",
+          "Thank you! Your Card Payment will be received when approve payment on your phone",
         carpayment: carpayment,
         cardStatus: cardStatus,
       });
@@ -105,7 +104,23 @@ const GetCardpaymentSatus = async (uuid) => {
     return null; // Handle the error as needed
   }
 };
+
+const GetPaidUsers=async(req,res)=>{
+   try{
+     const cardPaidUser=await CardPaymentStatus.find()
+
+     return res.status(200).json(
+      {
+        data:cardPaidUser
+      }
+     )
+
+   }catch(error) {
+    console.error(error);
+   }
+}
 module.exports = {
   CreateCardPayment,
   GetCardpaymentSatus,
+  GetPaidUsers
 };

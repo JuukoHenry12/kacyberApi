@@ -14,6 +14,10 @@ const CardPaymentRouter = require("./Routes/CardPayment")
 
 app.use(express.json());
 app.use(cors());
+var corsOptions = {
+  origin: 'http://localhost:5173',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 app.use("/api/user", UserRouter);
 app.use("/api/stuff", StuffRouter);
