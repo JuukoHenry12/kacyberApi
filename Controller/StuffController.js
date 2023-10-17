@@ -36,34 +36,38 @@ const LoginController = async (req, res) => {
   try {
     const stuff = await Stuff.findOne({ email });
     if (!stuff) {
-      return res.status(404).json("User already exists");
+      return res.status(404).json({ message: "Stuff not found" }); // Correct the error message
     }
 
-    // compare password
-    const isPassWordMatch = await bcrypt.compare(password, stuff.password);
+    // Compare password
+    const isPasswordMatch = await bcrypt.compare(password, stuff.password);
 
-    if (!isPassWordMatch) {
+    if (!isPasswordMatch) {
       return res.status(401).json({ message: "Invalid password" });
     }
 
+    // Create a JWT token with the user's information
     const token = jwt.sign(
       {
-        stuffId: stuff.id,
+        stuffId: stuff._id, // Use _id instead of id
         email: stuff.email,
       },
-      process.env.JWT,
+      process.env.JWT_SECRET, // Use a correct environment variable for the JWT secret
       { expiresIn: "24h" }
     );
+
     return res.status(200).json({
       token: token,
-      stuffId: stuff._id,
-      message: "User succesffully logined ",
-      success:true,
+      stuffId: stuff._id, // Use _id instead of _id
+      message: "User successfully logged in", // Correct the message
+      success: true,
     });
   } catch (error) {
+    console.error(error); // Log the error for debugging purposes
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
 
 const DeleteStuffContoller = async (req, res) => {
 
