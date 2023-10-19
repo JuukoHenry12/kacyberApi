@@ -3,26 +3,30 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 const MemberSchema = new Schema( {
-	firstname:{
+    name:{
         type:String,
         require:true
     },
-    surname:{
-        type:String,
-        require:true
-   },
    phoneNumber:{
          type:String,
          require:true
     },
-
-    email:{
+    cardType:{
+        type:String,
+        require:true 
+    },
+    CardNumber:{
         type:String,
         require:true
-   },
-   NinNumber:{
+    },
+    status:{
         type:String,
         require:true
+    },
+ 
+    IssuedBy:{
+        type:String,
+        require:true 
     },
     createdAt: {
         type: Date,

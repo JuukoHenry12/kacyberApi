@@ -52,7 +52,7 @@ const LoginController = async (req, res) => {
         stuffId: stuff._id, // Use _id instead of id
         email: stuff.email,
       },
-      process.env.JWT_SECRET, // Use a correct environment variable for the JWT secret
+      process.env.JWT, // Use a correct environment variable for the JWT secret
       { expiresIn: "24h" }
     );
 

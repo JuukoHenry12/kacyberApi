@@ -17,6 +17,7 @@ const WailtListController = async (req, res) => {
         phoneNumber,
         selectedOption,
         NinNumber,
+        status: 'pending',
       });
    
       // Save the user to the database

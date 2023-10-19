@@ -24,6 +24,9 @@ const userSchema = new Schema( {
     type:String,
     require:true
     },
+    status:{
+        type:String
+    },
     NinNumber:{
         type:String,
         require:true
