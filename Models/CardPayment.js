@@ -1,8 +1,5 @@
-
-
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
 const CardPaymentSchema = new Schema( {
     id:{
       type:String
